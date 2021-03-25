@@ -5,27 +5,34 @@
 import Foundation
 import CoreHaptics
 
-// MARK: - HapticFactory
-class HapticFactory {
+/// A class to manage and play CoreHaptics.
+public class HapticFactory {
     
-    // MARK: Props
-    let hapticEngine: CHHapticEngine
-    
-    // MARK: Setup
-    init?() {
+    /// An initializer that returns nil if device does not support haptics.
+    public init?() {
         // Check device compatibility
-        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return nil }
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else {
+            print("Device does not support haptics.")
+            return nil
+        }
         // Create the haptic engine object
         do {
             hapticEngine = try CHHapticEngine()
         } catch let error {
-            print("Haptic engine Creation Error: \(error)")
+            print("Haptic engine Creation Error: \(error).")
             return nil
         }
     }
     
-    // MARK: Public Methods
-    func playHaptic(_ hapticType: HapticType) {
+    /// The type of haptic pattern to be played.
+    public enum HapticType {
+        case singlePulse
+        case doublePulse
+    }
+    
+    /// Plays the specified haptic pattern.
+    /// - Parameter hapticType: The type of haptic pattern to be played.
+    public func playHaptic(_ hapticType: HapticType) {
         DispatchQueue.global(qos: .userInitiated).async {
             switch hapticType {
                 case .singlePulse: self.singlePulse()
@@ -34,15 +41,13 @@ class HapticFactory {
         }
     }
     
+    // Local prop to play the haptics
+    private let hapticEngine: CHHapticEngine
+    
 }
 
 // MARK: - Haptic Types
 extension HapticFactory {
-    
-    enum HapticType {
-        case singlePulse
-        case doublePulse
-    }
     
     private func singlePulse() {
         

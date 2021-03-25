@@ -27,7 +27,7 @@ extension View {
     ///
     /// - Returns: A view with a spacer extending from the specified edge.
     ///
-    func addSpacer(_ edge: Edge, _ minLength: CGFloat? = nil) -> some View {
+    public func addSpacer(_ edge: Edge, _ minLength: CGFloat? = nil) -> some View {
         self.modifier(AddSpacerModifier(edge: edge, minLength: minLength))
     }
 }

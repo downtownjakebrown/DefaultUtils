@@ -7,7 +7,7 @@ import SwiftUI
 extension View {
     
     /// Helper to hide software keyboard if shown on screen.
-    func hideKeyboard() {
+    public func hideKeyboard() {
         UIApplication.shared
         .sendAction(#selector(UIResponder.resignFirstResponder),
             to: nil,
@@ -21,7 +21,7 @@ extension View {
     ///   - onShow: A closure executed when the keyboard shows
     ///   - onHide: A closure executed when the keyboard hides
     /// - Returns: The modified view
-    func keyboardObserver(
+    public func keyboardObserver(
         onShow: @escaping (Notification) -> Void,
         onHide: @escaping (Notification) -> Void
     ) -> some View {

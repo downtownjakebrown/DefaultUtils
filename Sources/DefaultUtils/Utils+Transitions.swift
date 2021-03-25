@@ -11,7 +11,7 @@ extension AnyTransition {
     ///   - insertion: The insertion direction.
     ///   - removal: The removal direction.
     /// - Returns: The asymmetric transition.
-    static func slide(
+    public static func slide(
         insertion: Edge = .leading,
         removal: Edge = .trailing
     ) -> AnyTransition {

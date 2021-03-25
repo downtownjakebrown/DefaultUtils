@@ -12,7 +12,7 @@ extension View {
     ///
     /// - Parameter mask: The view applied as a mask to self.
     /// - Returns: The modified view with portions masked.
-    func inverseMask<Mask>(_ mask: Mask) -> some View where Mask: View {
+    public func inverseMask<Mask>(_ mask: Mask) -> some View where Mask: View {
         self.mask(mask
             .foregroundColor(.black)
             .background(Color.white)
